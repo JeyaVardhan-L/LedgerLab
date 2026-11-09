@@ -49,7 +49,9 @@ export default function App() {
             gap: '12px',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+          <div
+            style={{ display: 'flex', alignItems: 'center', gap: '14px', minWidth: 0 }}
+          >
             <div
               style={{
                 width: '34px',
@@ -68,7 +70,14 @@ export default function App() {
               LL
             </div>
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                  gap: '6px 10px',
+                }}
+              >
                 <span
                   style={{
                     fontSize: '1.125rem',
