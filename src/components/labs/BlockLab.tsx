@@ -177,7 +177,7 @@ export const BlockLab: React.FC<BlockLabProps> = ({
           flexWrap: 'wrap',
           gap: '12px',
           padding: '12px 18px',
-          background: 'rgba(0, 240, 255, 0.04)',
+          background: 'var(--bg-panel)',
           border: '1px solid var(--border-subtle)',
           borderRadius: 'var(--radius-md)',
         }}
@@ -232,7 +232,6 @@ export const BlockLab: React.FC<BlockLabProps> = ({
             <h3
               style={{
                 fontSize: '1.25rem',
-                fontWeight: 700,
                 fontFamily: 'var(--font-mono)',
               }}
             >
@@ -490,8 +489,8 @@ export const BlockLab: React.FC<BlockLabProps> = ({
               gap: '10px',
               padding: '10px 12px',
               background: validation.isValid
-                ? 'rgba(16, 185, 129, 0.08)'
-                : 'rgba(244, 63, 94, 0.08)',
+                ? 'rgba(129, 103, 41, 0.08)'
+                : 'rgba(255, 104, 44, 0.08)',
               borderRadius: 'var(--radius-sm)',
               borderLeft: `3px solid ${validation.isValid ? 'var(--accent-emerald)' : 'var(--accent-rose)'}`,
               fontSize: '0.8125rem',
@@ -550,16 +549,22 @@ export const BlockLab: React.FC<BlockLabProps> = ({
             alignItems: 'center',
             flexWrap: 'wrap',
             gap: '14px',
-            background:
-              'linear-gradient(90deg, rgba(0, 240, 255, 0.08) 0%, rgba(15, 22, 35, 0.9) 100%)',
-            border: '1px solid var(--border-accent)',
+            background: 'var(--bg-feature)',
+            border: 'none',
+            borderRadius: 'var(--radius-feature)',
             padding: '18px 24px',
           }}
         >
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <span className="badge badge-cyan">Checkpoint Reached</span>
-              <span style={{ fontSize: '0.9375rem', fontWeight: 600, color: '#fff' }}>
+              <span
+                style={{
+                  fontSize: '0.9375rem',
+                  fontWeight: 600,
+                  color: 'var(--text-primary)',
+                }}
+              >
                 You understand block headers and Proof-of-Work mining!
               </span>
             </div>

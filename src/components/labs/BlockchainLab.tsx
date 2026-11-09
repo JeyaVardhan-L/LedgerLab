@@ -126,8 +126,8 @@ export const BlockchainLab: React.FC<BlockchainLabProps> = ({
           gap: '16px',
           padding: '16px 20px',
           background: validation.isValid
-            ? 'rgba(16, 185, 129, 0.05)'
-            : 'rgba(244, 63, 94, 0.06)',
+            ? 'rgba(129, 103, 41, 0.05)'
+            : 'rgba(255, 104, 44, 0.06)',
           border: `1px solid ${validation.isValid ? 'var(--border-valid)' : 'var(--border-invalid)'}`,
           borderRadius: 'var(--radius-lg)',
         }}
@@ -151,7 +151,7 @@ export const BlockchainLab: React.FC<BlockchainLabProps> = ({
           </div>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ fontSize: '1.125rem', fontWeight: 700 }}>
+              <span style={{ fontSize: '1.125rem', fontWeight: 600 }}>
                 {validation.isValid
                   ? 'Chain Integrity: Valid'
                   : 'Chain Integrity: Broken (Tampered)'}
@@ -222,8 +222,8 @@ export const BlockchainLab: React.FC<BlockchainLabProps> = ({
             alignItems: 'center',
             gap: '12px',
             padding: '12px 16px',
-            background: 'rgba(244, 63, 94, 0.08)',
-            border: '1px solid rgba(244, 63, 94, 0.3)',
+            background: 'rgba(255, 104, 44, 0.08)',
+            border: '1px solid rgba(255, 104, 44, 0.3)',
             borderRadius: 'var(--radius-md)',
             color: 'var(--text-primary)',
             fontSize: '0.875rem',
@@ -248,7 +248,7 @@ export const BlockchainLab: React.FC<BlockchainLabProps> = ({
             alignItems: 'flex-start',
             gap: '12px',
             padding: '12px 16px',
-            background: 'rgba(0, 240, 255, 0.04)',
+            background: 'var(--bg-panel)',
             border: '1px solid var(--border-subtle)',
             borderRadius: 'var(--radius-md)',
             fontSize: '0.8125rem',
@@ -315,7 +315,7 @@ export const BlockchainLab: React.FC<BlockchainLabProps> = ({
                     <span
                       style={{
                         fontSize: '1.125rem',
-                        fontWeight: 700,
+                        fontWeight: 600,
                         fontFamily: 'var(--font-mono)',
                         color: isCurrentValid
                           ? 'var(--accent-cyan)'
@@ -403,7 +403,7 @@ export const BlockchainLab: React.FC<BlockchainLabProps> = ({
                         color: status?.isLinkValid
                           ? 'var(--text-secondary)'
                           : 'var(--accent-rose)',
-                        background: 'rgba(6, 9, 15, 0.6)',
+                        background: 'var(--bg-inset)',
                       }}
                     >
                       {block.previousHash}
@@ -490,7 +490,7 @@ export const BlockchainLab: React.FC<BlockchainLabProps> = ({
                         color: isCurrentValid
                           ? 'var(--accent-emerald)'
                           : 'var(--accent-rose)',
-                        background: 'rgba(6, 9, 15, 0.95)',
+                        background: 'var(--bg-inset)',
                       }}
                     >
                       {block.hash}
@@ -525,15 +525,7 @@ export const BlockchainLab: React.FC<BlockchainLabProps> = ({
                       : 'var(--accent-rose)',
                   }}
                 >
-                  <ArrowRight
-                    size={20}
-                    style={{
-                      transform: 'rotate(90deg)',
-                      filter: validation.blockStatuses[idx + 1]?.isLinkValid
-                        ? 'drop-shadow(0 0 4px rgba(16, 185, 129, 0.5))'
-                        : 'drop-shadow(0 0 4px rgba(244, 63, 94, 0.5))',
-                    }}
-                  />
+                  <ArrowRight size={20} style={{ transform: 'rotate(90deg)' }} />
                   <span
                     style={{
                       fontSize: '0.6875rem',
@@ -563,16 +555,22 @@ export const BlockchainLab: React.FC<BlockchainLabProps> = ({
             alignItems: 'center',
             flexWrap: 'wrap',
             gap: '14px',
-            background:
-              'linear-gradient(90deg, rgba(16, 185, 129, 0.08) 0%, rgba(15, 22, 35, 0.9) 100%)',
-            border: '1px solid var(--border-valid)',
+            background: 'var(--bg-feature)',
+            border: 'none',
+            borderRadius: 'var(--radius-feature)',
             padding: '18px 24px',
           }}
         >
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <span className="badge badge-emerald">Chain Mastery Checkpoint</span>
-              <span style={{ fontSize: '0.9375rem', fontWeight: 600, color: '#fff' }}>
+              <span
+                style={{
+                  fontSize: '0.9375rem',
+                  fontWeight: 600,
+                  color: 'var(--text-primary)',
+                }}
+              >
                 You experienced cascading invalidation and historical re-mining!
               </span>
             </div>

@@ -58,28 +58,12 @@ export const OnboardingHero: React.FC<OnboardingHeroProps> = ({
       className="card"
       style={{
         marginBottom: '24px',
-        background:
-          'linear-gradient(180deg, rgba(15, 22, 35, 0.98) 0%, rgba(8, 12, 20, 0.95) 100%)',
+        background: 'var(--bg-card)',
         border: '1px solid var(--border-accent)',
         position: 'relative',
         overflow: 'hidden',
       }}
     >
-      {/* Subtle background glow */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '-60px',
-          right: '-60px',
-          width: '240px',
-          height: '240px',
-          borderRadius: '50%',
-          background:
-            'radial-gradient(circle, rgba(0, 240, 255, 0.08) 0%, transparent 70%)',
-          pointerEvents: 'none',
-        }}
-      />
-
       <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
         {/* Header Badges & Title */}
         <div>
@@ -109,15 +93,24 @@ export const OnboardingHero: React.FC<OnboardingHeroProps> = ({
 
           <h1
             style={{
-              fontSize: '1.875rem',
-              fontWeight: 800,
-              letterSpacing: '-0.025em',
-              color: '#fff',
-              lineHeight: 1.2,
+              fontSize: 'clamp(2.75rem, 7vw, 4.125rem)',
+              letterSpacing: '-0.02em',
+              color: 'var(--text-primary)',
+              lineHeight: 0.95,
               marginBottom: '8px',
             }}
           >
-            LedgerLab <span style={{ color: 'var(--accent-cyan)' }}>Start Here</span>
+            LedgerLab{' '}
+            <span
+              style={{
+                textDecoration: 'underline',
+                textDecorationColor: 'var(--color-ember)',
+                textDecorationThickness: '4px',
+                textUnderlineOffset: '8px',
+              }}
+            >
+              Start Here
+            </span>
           </h1>
 
           <p
@@ -140,10 +133,6 @@ export const OnboardingHero: React.FC<OnboardingHeroProps> = ({
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
             gap: '12px',
-            padding: '16px',
-            background: 'rgba(6, 9, 15, 0.7)',
-            borderRadius: 'var(--radius-md)',
-            border: '1px solid var(--border-subtle)',
           }}
         >
           {STAGES.map(({ tab, number, title, summary, Icon }) => (

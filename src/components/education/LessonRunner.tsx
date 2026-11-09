@@ -71,7 +71,7 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({ onNavigateTab }) => 
             }}
           >
             <BookOpen size={18} className="text-cyan" />
-            <h3 style={{ fontSize: '1rem', fontWeight: 700 }}>Curriculum Units</h3>
+            <h3 style={{ fontSize: '1rem', fontWeight: 600 }}>Curriculum Units</h3>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -93,7 +93,7 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({ onNavigateTab }) => 
                     padding: '12px',
                     borderRadius: 'var(--radius-md)',
                     border: `1px solid ${isSelected ? 'var(--accent-cyan)' : 'var(--border-subtle)'}`,
-                    background: isSelected ? 'rgba(0, 240, 255, 0.08)' : 'var(--bg-card)',
+                    background: isSelected ? 'var(--color-ivory)' : 'var(--bg-card)',
                     textAlign: 'left',
                     cursor: 'pointer',
                     transition: 'all var(--transition-fast)',
@@ -123,7 +123,7 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({ onNavigateTab }) => 
                     style={{
                       fontSize: '0.875rem',
                       fontWeight: 600,
-                      color: isSelected ? '#fff' : 'var(--text-secondary)',
+                      color: isSelected ? 'var(--text-primary)' : 'var(--text-secondary)',
                     }}
                   >
                     {lesson.title}
@@ -195,7 +195,7 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({ onNavigateTab }) => 
                   Est. time: {activeLesson.estimatedMinutes} minutes
                 </span>
               </div>
-              <h2 style={{ fontSize: '1.5rem', fontWeight: 700 }}>
+              <h2 style={{ fontSize: '1.5rem', fontWeight: 600 }}>
                 {activeLesson.title}
               </h2>
             </div>
@@ -207,7 +207,7 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({ onNavigateTab }) => 
               <div
                 style={{
                   fontSize: '1.125rem',
-                  fontWeight: 700,
+                  fontWeight: 600,
                   fontFamily: 'var(--font-mono)',
                 }}
               >
@@ -230,7 +230,7 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({ onNavigateTab }) => 
             style={{
               marginTop: '14px',
               padding: '12px',
-              background: 'rgba(6, 9, 15, 0.6)',
+              background: 'var(--bg-inset)',
               borderRadius: 'var(--radius-sm)',
               fontSize: '0.8125rem',
               color: 'var(--text-muted)',
@@ -307,7 +307,7 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({ onNavigateTab }) => 
               <span className="input-label" style={{ color: 'var(--accent-cyan)' }}>
                 Step {currentStepIndex + 1} of {activeLesson.steps.length}
               </span>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 600, marginTop: '2px' }}>
+              <h3 style={{ fontSize: '1.25rem', marginTop: '2px' }}>
                 {currentStep.title}
               </h3>
             </div>
@@ -315,7 +315,7 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({ onNavigateTab }) => 
             <div
               style={{
                 padding: '14px 16px',
-                background: 'rgba(0, 240, 255, 0.05)',
+                background: 'var(--bg-panel)',
                 border: '1px solid var(--border-accent)',
                 borderRadius: 'var(--radius-md)',
                 fontSize: '0.9375rem',
@@ -352,8 +352,8 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({ onNavigateTab }) => 
                     style={{
                       marginTop: '8px',
                       padding: '10px 14px',
-                      background: 'rgba(245, 158, 11, 0.06)',
-                      border: '1px solid rgba(245, 158, 11, 0.25)',
+                      background: 'rgba(129, 103, 41, 0.06)',
+                      border: '1px solid rgba(129, 103, 41, 0.25)',
                       borderRadius: 'var(--radius-sm)',
                       fontSize: '0.8125rem',
                       color: 'var(--text-primary)',
@@ -387,7 +387,7 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({ onNavigateTab }) => 
         </div>
 
         {/* Lesson Challenge Card */}
-        <div className="card" style={{ background: 'rgba(15, 22, 35, 0.95)' }}>
+        <div className="card" style={{ background: 'var(--bg-inset)' }}>
           <div
             style={{
               display: 'flex',
@@ -404,7 +404,6 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({ onNavigateTab }) => 
           <h4
             style={{
               fontSize: '0.9375rem',
-              fontWeight: 600,
               color: 'var(--text-primary)',
               marginBottom: '6px',
             }}
@@ -438,7 +437,7 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({ onNavigateTab }) => 
               style={{
                 marginTop: '12px',
                 padding: '12px 16px',
-                background: 'rgba(16, 185, 129, 0.06)',
+                background: 'rgba(129, 103, 41, 0.06)',
                 border: '1px solid var(--border-valid)',
                 borderRadius: 'var(--radius-md)',
                 fontSize: '0.8125rem',
@@ -459,9 +458,9 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({ onNavigateTab }) => 
           id="graduation-challenge-card"
           className="card"
           style={{
-            background:
-              'linear-gradient(135deg, rgba(0, 240, 255, 0.05) 0%, rgba(16, 185, 129, 0.08) 100%)',
-            border: '1px solid var(--border-valid)',
+            background: 'var(--bg-feature)',
+            border: 'none',
+            borderRadius: 'var(--radius-feature)',
             padding: '20px',
             display: 'flex',
             justifyContent: 'space-between',
@@ -473,7 +472,13 @@ export const LessonRunner: React.FC<LessonRunnerProps> = ({ onNavigateTab }) => 
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <span className="badge badge-emerald">Curriculum Checkpoint</span>
-              <span style={{ fontSize: '1rem', fontWeight: 700, color: '#fff' }}>
+              <span
+                style={{
+                  fontSize: '1rem',
+                  fontWeight: 600,
+                  color: 'var(--text-primary)',
+                }}
+              >
                 Learning Path Complete: Take the Conceptual Challenge
               </span>
             </div>

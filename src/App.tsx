@@ -30,7 +30,7 @@ export default function App() {
       <header
         style={{
           borderBottom: '1px solid var(--border-subtle)',
-          backgroundColor: 'rgba(8, 12, 20, 0.85)',
+          backgroundColor: 'rgba(255, 255, 255, 0.92)',
           backdropFilter: 'blur(8px)',
           position: 'sticky',
           top: 0,
@@ -56,14 +56,13 @@ export default function App() {
               style={{
                 width: '34px',
                 height: '34px',
-                borderRadius: '8px',
-                background: 'rgba(0, 240, 255, 0.1)',
-                border: '1px solid var(--accent-cyan)',
+                borderRadius: '6px 0 0 0',
+                background: 'var(--color-graphite)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: 'var(--accent-cyan)',
-                fontWeight: 'bold',
+                color: 'var(--color-canvas-white)',
+                fontWeight: 500,
                 fontFamily: 'var(--font-mono)',
               }}
             >
@@ -81,9 +80,9 @@ export default function App() {
                 <span
                   style={{
                     fontSize: '1.125rem',
-                    fontWeight: 700,
+                    fontWeight: 600,
                     letterSpacing: '-0.02em',
-                    color: '#fff',
+                    color: 'var(--text-primary)',
                   }}
                 >
                   LedgerLab
@@ -123,7 +122,7 @@ export default function App() {
             </div>
           </div>
 
-          <nav style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+          <nav className="nav-pill" aria-label="Laboratories">
             {(['hash', 'block', 'blockchain', 'lessons'] as const).map((tab) => {
               const sandboxLabels: Record<LabTab, string> = {
                 hash: 'Hash Lab',
@@ -144,10 +143,6 @@ export default function App() {
                   onClick={() => setActiveTab(tab)}
                   aria-current={activeTab === tab ? 'page' : undefined}
                   className={`btn ${activeTab === tab ? 'btn-primary' : 'btn-secondary'}`}
-                  style={{
-                    fontSize: '0.8125rem',
-                    padding: '6px 14px',
-                  }}
                 >
                   {isGuidedMode ? labels[tab] : sandboxLabels[tab]}
                 </button>
@@ -180,8 +175,14 @@ export default function App() {
           />
         )}
 
-        <div style={{ padding: '24px 0 20px', textAlign: 'center' }}>
-          <h2 style={{ fontSize: '1.75rem', fontWeight: 700, marginBottom: '8px' }}>
+        <div style={{ padding: '56px 0 28px' }}>
+          <h2
+            style={{
+              fontSize: 'clamp(2rem, 4vw, 2.5rem)',
+              lineHeight: 1.1,
+              marginBottom: '12px',
+            }}
+          >
             {activeTab === 'hash' && 'Cryptographic Hash Laboratory'}
             {activeTab === 'block' && 'Single Block Inspector & Mining'}
             {activeTab === 'blockchain' && 'Multi-Block Chain & Tamper Laboratory'}
@@ -191,7 +192,8 @@ export default function App() {
             style={{
               color: 'var(--text-secondary)',
               maxWidth: '640px',
-              margin: '0 auto',
+              fontSize: '1.125rem',
+              lineHeight: 1.4,
             }}
           >
             {activeTab === 'hash' &&
@@ -230,7 +232,7 @@ export default function App() {
       <footer
         style={{
           borderTop: '1px solid var(--border-subtle)',
-          backgroundColor: 'rgba(8, 12, 20, 0.9)',
+          backgroundColor: 'var(--color-fog)',
           padding: '16px 24px',
           textAlign: 'center',
           fontSize: '0.75rem',

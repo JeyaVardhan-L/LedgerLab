@@ -100,7 +100,7 @@ export const HashLab: React.FC<HashLabProps> = ({
           flexWrap: 'wrap',
           gap: '12px',
           padding: '12px 18px',
-          background: 'rgba(0, 240, 255, 0.04)',
+          background: 'var(--bg-panel)',
           border: '1px solid var(--border-subtle)',
           borderRadius: 'var(--radius-md)',
         }}
@@ -212,7 +212,7 @@ export const HashLab: React.FC<HashLabProps> = ({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              background: 'rgba(6, 9, 15, 0.95)',
+              background: 'var(--bg-inset)',
               border: '1px solid var(--border-accent)',
             }}
           >
@@ -392,7 +392,7 @@ export const HashLab: React.FC<HashLabProps> = ({
                 gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
                 gap: '12px',
                 padding: '16px',
-                background: 'rgba(10, 14, 24, 0.7)',
+                background: 'var(--bg-inset)',
                 borderRadius: 'var(--radius-md)',
                 border: '1px solid var(--border-subtle)',
               }}
@@ -404,7 +404,7 @@ export const HashLab: React.FC<HashLabProps> = ({
                 <div
                   style={{
                     fontSize: '1.5rem',
-                    fontWeight: 700,
+                    fontWeight: 600,
                     fontFamily: 'var(--font-mono)',
                     color:
                       avalanche.flippedBits > 100
@@ -432,7 +432,7 @@ export const HashLab: React.FC<HashLabProps> = ({
                 <div
                   style={{
                     fontSize: '1.5rem',
-                    fontWeight: 700,
+                    fontWeight: 600,
                     fontFamily: 'var(--font-mono)',
                     color: 'var(--accent-cyan)',
                   }}
@@ -451,7 +451,7 @@ export const HashLab: React.FC<HashLabProps> = ({
                 <div
                   style={{
                     fontSize: '1.5rem',
-                    fontWeight: 700,
+                    fontWeight: 600,
                     fontFamily: 'var(--font-mono)',
                     color: 'var(--text-primary)',
                   }}
@@ -467,7 +467,7 @@ export const HashLab: React.FC<HashLabProps> = ({
                 <div
                   style={{
                     fontSize: '1.5rem',
-                    fontWeight: 700,
+                    fontWeight: 600,
                     fontFamily: 'var(--font-mono)',
                     color: 'var(--text-secondary)',
                   }}
@@ -497,7 +497,7 @@ export const HashLab: React.FC<HashLabProps> = ({
                         width: '10px',
                         height: '10px',
                         borderRadius: '2px',
-                        background: 'rgba(30, 44, 68, 0.8)',
+                        background: 'var(--border-subtle)',
                         display: 'inline-block',
                       }}
                     />
@@ -509,8 +509,8 @@ export const HashLab: React.FC<HashLabProps> = ({
                         width: '10px',
                         height: '10px',
                         borderRadius: '2px',
-                        background: 'var(--accent-amber)',
-                        boxShadow: '0 0 6px rgba(245, 158, 11, 0.6)',
+                        background: 'var(--accent-ember)',
+                        boxShadow: 'none',
                         display: 'inline-block',
                       }}
                     />
@@ -540,9 +540,9 @@ export const HashLab: React.FC<HashLabProps> = ({
                         height: '12px',
                         borderRadius: '2px',
                         backgroundColor: isFlipped
-                          ? 'var(--accent-amber)'
-                          : 'rgba(30, 44, 68, 0.7)',
-                        boxShadow: isFlipped ? '0 0 4px rgba(245, 158, 11, 0.5)' : 'none',
+                          ? 'var(--accent-ember)'
+                          : 'var(--border-subtle)',
+                        boxShadow: 'none',
                         transition: 'background-color 200ms ease',
                       }}
                     />
@@ -564,16 +564,22 @@ export const HashLab: React.FC<HashLabProps> = ({
             alignItems: 'center',
             flexWrap: 'wrap',
             gap: '14px',
-            background:
-              'linear-gradient(90deg, rgba(0, 240, 255, 0.08) 0%, rgba(15, 22, 35, 0.9) 100%)',
-            border: '1px solid var(--border-accent)',
+            background: 'var(--bg-feature)',
+            border: 'none',
+            borderRadius: 'var(--radius-feature)',
             padding: '18px 24px',
           }}
         >
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <span className="badge badge-cyan">Checkpoint Reached</span>
-              <span style={{ fontSize: '0.9375rem', fontWeight: 600, color: '#fff' }}>
+              <span
+                style={{
+                  fontSize: '0.9375rem',
+                  fontWeight: 600,
+                  color: 'var(--text-primary)',
+                }}
+              >
                 You understand how cryptographic hashes and the avalanche effect work!
               </span>
             </div>

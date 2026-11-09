@@ -44,11 +44,10 @@ export const MissionPanel: React.FC<MissionPanelProps> = ({
       className="card"
       style={{
         border: '1px solid var(--border-accent)',
-        background:
-          'linear-gradient(180deg, rgba(10, 16, 28, 0.95) 0%, rgba(6, 9, 15, 0.9) 100%)',
+        background: 'var(--bg-card)',
         padding: '16px 20px',
         position: 'relative',
-        boxShadow: '0 0 15px rgba(0, 240, 255, 0.05)',
+        boxShadow: 'none',
       }}
     >
       {/* Header bar */}
@@ -72,7 +71,7 @@ export const MissionPanel: React.FC<MissionPanelProps> = ({
               width: '28px',
               height: '28px',
               borderRadius: '6px',
-              background: 'rgba(0, 240, 255, 0.1)',
+              background: 'var(--color-ivory)',
               color: 'var(--accent-cyan)',
             }}
           >
@@ -83,7 +82,13 @@ export const MissionPanel: React.FC<MissionPanelProps> = ({
               <span className="badge badge-cyan" style={{ fontSize: '0.6875rem' }}>
                 Stage {stageNumber}
               </span>
-              <span style={{ fontSize: '0.9375rem', fontWeight: 700, color: '#fff' }}>
+              <span
+                style={{
+                  fontSize: '0.9375rem',
+                  fontWeight: 600,
+                  color: 'var(--text-primary)',
+                }}
+              >
                 {stageTitle} — Guided Mission
               </span>
             </div>
@@ -144,7 +149,7 @@ export const MissionPanel: React.FC<MissionPanelProps> = ({
             <div
               style={{
                 padding: '14px',
-                background: 'rgba(6, 9, 15, 0.6)',
+                background: 'var(--bg-inset)',
                 borderRadius: 'var(--radius-md)',
                 border: '1px solid var(--border-subtle)',
               }}
@@ -157,7 +162,7 @@ export const MissionPanel: React.FC<MissionPanelProps> = ({
                   marginBottom: '10px',
                   color: 'var(--accent-cyan)',
                   fontSize: '0.75rem',
-                  fontWeight: 700,
+                  fontWeight: 600,
                   fontFamily: 'var(--font-mono)',
                   textTransform: 'uppercase',
                   letterSpacing: '0.05em',
@@ -187,9 +192,9 @@ export const MissionPanel: React.FC<MissionPanelProps> = ({
               <div
                 style={{
                   padding: '12px 14px',
-                  background: 'rgba(245, 158, 11, 0.05)',
+                  background: 'rgba(129, 103, 41, 0.05)',
                   borderRadius: 'var(--radius-md)',
-                  border: '1px solid rgba(245, 158, 11, 0.2)',
+                  border: '1px solid rgba(129, 103, 41, 0.2)',
                 }}
               >
                 <div
@@ -199,7 +204,7 @@ export const MissionPanel: React.FC<MissionPanelProps> = ({
                     gap: '6px',
                     color: 'var(--accent-amber)',
                     fontSize: '0.75rem',
-                    fontWeight: 700,
+                    fontWeight: 600,
                     fontFamily: 'var(--font-mono)',
                     textTransform: 'uppercase',
                     marginBottom: '4px',
@@ -221,9 +226,9 @@ export const MissionPanel: React.FC<MissionPanelProps> = ({
               <div
                 style={{
                   padding: '12px 14px',
-                  background: 'rgba(16, 185, 129, 0.05)',
+                  background: 'rgba(129, 103, 41, 0.05)',
                   borderRadius: 'var(--radius-md)',
-                  border: '1px solid rgba(16, 185, 129, 0.2)',
+                  border: '1px solid rgba(129, 103, 41, 0.2)',
                 }}
               >
                 <div
@@ -233,7 +238,7 @@ export const MissionPanel: React.FC<MissionPanelProps> = ({
                     gap: '6px',
                     color: 'var(--accent-emerald)',
                     fontSize: '0.75rem',
-                    fontWeight: 700,
+                    fontWeight: 600,
                     fontFamily: 'var(--font-mono)',
                     textTransform: 'uppercase',
                     marginBottom: '4px',
@@ -264,9 +269,9 @@ export const MissionPanel: React.FC<MissionPanelProps> = ({
                 flexWrap: 'wrap',
                 gap: '10px',
                 padding: '10px 14px',
-                background: 'rgba(0, 240, 255, 0.04)',
+                background: 'var(--bg-panel)',
                 borderRadius: 'var(--radius-md)',
-                border: '1px solid rgba(0, 240, 255, 0.15)',
+                border: '1px solid var(--border-subtle)',
               }}
             >
               <div style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)' }}>

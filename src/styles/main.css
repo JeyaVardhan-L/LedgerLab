@@ -15,42 +15,29 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image:
-    radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.04) 0%, transparent 60%),
-    linear-gradient(rgba(30, 44, 68, 0.15) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(30, 44, 68, 0.15) 1px, transparent 1px);
-  background-size:
-    100% 100%,
-    32px 32px,
-    32px 32px;
-  background-attachment: fixed;
   min-height: 100vh;
 }
 
-/* Custom Scrollbars */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+/* Headings: display face at regular weight, tight tracking */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
 }
 
-::-webkit-scrollbar-track {
-  background: var(--bg-app);
+::selection {
+  background: var(--color-ivory);
+  color: var(--color-graphite);
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--border-medium);
-  border-radius: var(--radius-sm);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
-}
-
-/* Base utility classes */
+/* Utility classes */
 .font-mono {
   font-family: var(--font-mono);
 }
-
 .text-cyan {
   color: var(--accent-cyan);
 }
@@ -70,126 +57,122 @@ body {
   color: var(--text-secondary);
 }
 
-/* Common UI Elements */
+/* Tags: pill shaped, quiet */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 3px 8px;
-  border-radius: var(--radius-sm);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-family: var(--font-sans);
   font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: 0.01em;
   white-space: nowrap;
+  border: 1px solid transparent;
 }
 
 .badge-cyan {
-  background: var(--accent-cyan-glow);
-  color: var(--accent-cyan);
-  border: 1px solid rgba(0, 240, 255, 0.3);
+  background: var(--bg-inset);
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
 }
 
 .badge-emerald {
   background: var(--accent-emerald-glow);
   color: var(--accent-emerald);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-color: var(--border-valid);
 }
 
 .badge-rose {
   background: var(--accent-rose-glow);
   color: var(--accent-rose);
-  border: 1px solid rgba(244, 63, 94, 0.3);
+  border-color: rgba(255, 104, 44, 0.45);
 }
 
 .badge-amber {
-  background: var(--accent-amber-glow);
-  color: var(--accent-amber);
-  border: 1px solid rgba(245, 158, 11, 0.3);
+  background: var(--color-ivory);
+  color: var(--color-brass);
 }
 
-/* Button styles */
+/* Buttons: square corners, display face, no shadow */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 8px 16px;
-  border-radius: var(--radius-md);
-  font-size: 0.875rem;
-  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 0;
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
   border: 1px solid transparent;
-  font-family: var(--font-sans);
   text-decoration: none;
 }
 
 .btn-primary {
-  background: rgba(0, 240, 255, 0.1);
-  color: var(--accent-cyan);
-  border-color: rgba(0, 240, 255, 0.4);
+  background: var(--color-graphite);
+  color: var(--color-canvas-white);
+  border-color: var(--color-graphite);
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: rgba(0, 240, 255, 0.2);
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 12px rgba(0, 240, 255, 0.25);
+  background: #3a3a3a;
+  border-color: #3a3a3a;
 }
 
 .btn-secondary {
-  background: var(--bg-card);
+  background: transparent;
   color: var(--text-primary);
-  border-color: var(--border-subtle);
+  border-color: var(--color-graphite);
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background: var(--bg-card-hover);
-  border-color: var(--border-medium);
+  background: var(--color-graphite);
+  color: var(--color-canvas-white);
 }
 
 .btn-danger {
-  background: rgba(244, 63, 94, 0.1);
+  background: transparent;
   color: var(--accent-rose);
-  border-color: rgba(244, 63, 94, 0.4);
+  border-color: var(--color-ember);
 }
 
 .btn-danger:hover:not(:disabled) {
-  background: rgba(244, 63, 94, 0.2);
-  border-color: var(--accent-rose);
+  background: var(--accent-rose-glow);
 }
 
 .btn:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
-/* Card container */
+/* Cards: ash surface, 8px radius, no shadow */
 .card {
   background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid transparent;
   border-radius: var(--radius-lg);
-  padding: 20px;
-  box-shadow: var(--shadow-sm);
+  padding: 28px;
   transition: border-color var(--transition-fast);
-}
-
-.card:hover {
-  border-color: var(--border-medium);
 }
 
 .card-valid {
   border-color: var(--border-valid);
-  background: linear-gradient(180deg, rgba(16, 185, 129, 0.03) 0%, var(--bg-card) 100%);
 }
 
 .card-invalid {
   border-color: var(--border-invalid);
-  background: linear-gradient(180deg, rgba(244, 63, 94, 0.03) 0%, var(--bg-card) 100%);
+  background: linear-gradient(180deg, rgba(255, 104, 44, 0.07) 0%, var(--bg-card) 140px);
 }
 
-/* Input Fields */
+/* Inputs */
 .input-group {
   display: flex;
   flex-direction: column;
@@ -197,12 +180,12 @@ body {
 }
 
 .input-label {
+  font-family: var(--font-sans);
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   color: var(--text-secondary);
-  font-family: var(--font-mono);
 }
 
 .input-text,
@@ -210,31 +193,29 @@ body {
   width: 100%;
   background: var(--bg-input);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   color: var(--text-primary);
   font-family: var(--font-mono);
   font-size: 0.875rem;
   padding: 10px 12px;
-  transition: all var(--transition-fast);
+  transition: border-color var(--transition-fast);
 }
 
 .input-text:focus,
 .input-textarea:focus {
   outline: none;
-  border-color: var(--accent-cyan);
-  box-shadow:
-    0 0 0 1px var(--accent-cyan),
-    0 0 10px rgba(0, 240, 255, 0.15);
+  border-color: var(--color-graphite);
+  box-shadow: 0 0 0 1px var(--color-graphite);
 }
 
 .code-box {
   background: var(--bg-code);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   padding: 10px 14px;
   font-family: var(--font-mono);
   font-size: 0.8125rem;
-  color: var(--accent-cyan);
+  color: var(--text-primary);
   word-break: break-all;
   user-select: all;
 }
@@ -243,8 +224,40 @@ body {
 .btn:focus-visible,
 .stage-card:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--accent-cyan);
+  outline: 2px solid var(--color-ember);
   outline-offset: 2px;
+}
+
+/* Header navigation: one pill container holding the tabs */
+.nav-pill {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px;
+  background: var(--color-ash);
+  border-radius: 24px;
+}
+
+.nav-pill .btn {
+  border-radius: var(--radius-pill);
+  border: none;
+  padding: 8px 16px;
+  font-size: 0.9375rem;
+}
+
+.nav-pill .btn-secondary {
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.nav-pill .btn-secondary:hover:not(:disabled) {
+  background: var(--color-canvas-white);
+  color: var(--text-primary);
+}
+
+.nav-pill .btn-primary {
+  background: var(--color-graphite);
+  color: var(--color-canvas-white);
 }
 
 /* Onboarding stage cards (buttons, so they are reachable by keyboard) */
@@ -252,24 +265,21 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 4px;
+  gap: 6px;
   width: 100%;
-  padding: 12px;
+  padding: 20px;
   text-align: left;
   font: inherit;
   color: inherit;
   cursor: pointer;
-  border-radius: var(--radius-md);
-  background: rgba(15, 22, 35, 0.6);
-  border: 1px solid var(--border-subtle);
-  transition:
-    border-color var(--transition-fast),
-    background var(--transition-fast);
+  border-radius: var(--radius-feature);
+  background: var(--color-canvas-white);
+  border: 1px solid transparent;
+  transition: border-color var(--transition-fast);
 }
 
 .stage-card:hover {
-  border-color: var(--border-accent);
-  background: var(--bg-card-hover);
+  border-color: var(--color-graphite);
 }
 
 .stage-card-label {
@@ -278,34 +288,45 @@ button:focus-visible {
   gap: 8px;
   font-size: 0.75rem;
   font-family: var(--font-mono);
-  font-weight: 700;
-  color: var(--accent-cyan);
+  color: var(--color-brass);
 }
 
 .stage-card-number {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: rgba(0, 240, 255, 0.15);
+  display: none;
 }
 
 .stage-card-icon {
   margin-left: auto;
-  opacity: 0.7;
+  color: var(--text-muted);
 }
 
 .stage-card-title {
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
 }
 
 .stage-card-summary {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   color: var(--text-secondary);
+}
+
+/* Featured "checkpoint" blocks: ivory wash, asymmetric corner */
+.card.feature-block {
+  background: var(--bg-feature);
+  border: none;
+  border-radius: var(--radius-feature);
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
