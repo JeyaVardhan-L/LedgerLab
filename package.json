@@ -2,7 +2,7 @@
   "name": "ledgerlab",
   "private": true,
   "version": "0.1.0",
-  "description": "An open-source, browser-based blockchain laboratory where you learn cryptography, transactions, consensus, and attacks by experimenting with a simulated network.",
+  "description": "A browser-based laboratory for learning how blockchains work: SHA-256 hashing, block structure, proof-of-work and tamper-evident chains, all simulated client-side.",
   "type": "module",
   "scripts": {
     "dev": "vite",

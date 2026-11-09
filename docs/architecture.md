@@ -24,7 +24,7 @@ LedgerLab is designed as a **browser-first, client-side, zero-backend** applicat
 ├─────────────────────────────────────────────────────────────┤
 │  Cryptographic Foundation                                   │
 │  ├── FIPS 180-4 SHA-256 Engine                              │
-│  ├── Web Crypto Subtle API                                  │
+│  ├── Web Crypto wrapper (used as a test reference)          │
 │  └── Avalanche Bitwise Distance Metric                      │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -39,7 +39,7 @@ LedgerLab is designed as a **browser-first, client-side, zero-backend** applicat
 
 ### 2. Pure Synchronous Engine with Asynchronous Compatibility
 - **Why**: When learners type into an input field, the calculated hash and downstream chain validation must update immediately on every keystroke without async flickering or promise delays.
-- **Implementation**: A pure TypeScript implementation of standard SHA-256 provides synchronous, deterministic hashing for UI renders, while standard Web Crypto (`crypto.subtle.digest`) is preserved for asynchronous benchmarking.
+- **Implementation**: A pure TypeScript implementation of standard SHA-256 provides synchronous, deterministic hashing for UI renders, while a thin Web Crypto (`crypto.subtle.digest`) wrapper is kept and used in tests as an independent reference. The UI itself does not call Web Crypto.
 
 ### 3. Separation of Engine from React
 - The simulation engine in `src/engine/` has zero dependencies on React, hooks, DOM elements, or UI state.
@@ -47,7 +47,7 @@ LedgerLab is designed as a **browser-first, client-side, zero-backend** applicat
 
 ### 4. Non-Blocking Mining
 - Proof-of-Work mining loops can easily hang single-threaded JavaScript execution.
-- LedgerLab implements iterative step-mining (`mineBlockStep`) to chunk work across frames, maintaining a smooth 60 FPS UI while mining.
+- LedgerLab implements iterative step-mining (`mineBlockStep`) to chunk work across timer ticks (5,000 attempts per tick in the Block Lab) so the page stays responsive. Frame rate has not been measured. The Blockchain Lab still mines synchronously (`mineBlockSync`), which is fast at its fixed difficulty of 2 but blocks the main thread.
 - A dedicated Web Worker pipeline is slated for high-difficulty simulations in future milestones.
 
 ### 5. Monospace Technical Styling

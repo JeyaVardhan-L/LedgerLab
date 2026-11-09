@@ -9,12 +9,12 @@ This roadmap documents the phased evolution of LedgerLab from its foundational M
 
 - [x] Clean archival of legacy Campus Coin Java prototype (`legacy/`)
 - [x] Modern browser-first TypeScript + React + Vite architecture
-- [x] Standard SHA-256 implementation with synchronous rendering and Web Crypto compatibility
+- [x] Standard SHA-256 implementation for synchronous rendering, tested against Node crypto and Web Crypto
 - [x] Interactive Hash Lab with 256-bit binary stream view and real-time avalanche visualizer
 - [x] Interactive Block Lab with editable headers, hash verification, and difficulty mining
 - [x] Interactive Blockchain Lab with 4 linked blocks, live tampering, and cascading invalidation
 - [x] Education Engine with Lesson 01 (Hashes) and Lesson 02 (Chain Integrity)
-- [x] Vitest unit test suite (20 tests covering crypto, blocks, chain, and education)
+- [x] Vitest unit test suite (crypto, blocks, chain, education; SHA-256 cross-checked against Node crypto)
 - [x] Playwright browser smoke test suite
 - [x] Comprehensive documentation and MIT open-source licensing
 
