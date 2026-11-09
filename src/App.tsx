@@ -41,7 +41,7 @@ export default function App() {
           style={{
             maxWidth: '1280px',
             margin: '0 auto',
-            padding: '12px 24px',
+            padding: '12px clamp(16px, 4vw, 24px)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -116,6 +116,12 @@ export default function App() {
 
           <nav style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
             {(['hash', 'block', 'blockchain', 'lessons'] as const).map((tab) => {
+              const sandboxLabels: Record<LabTab, string> = {
+                hash: 'Hash Lab',
+                block: 'Block Lab',
+                blockchain: 'Blockchain Lab',
+                lessons: 'Lessons',
+              };
               const labels: Record<LabTab, string> = {
                 hash: '1. Hash Lab',
                 block: '2. Block Lab',
@@ -127,19 +133,14 @@ export default function App() {
                   key={tab}
                   id={`tab-${tab}`}
                   onClick={() => setActiveTab(tab)}
+                  aria-current={activeTab === tab ? 'page' : undefined}
                   className={`btn ${activeTab === tab ? 'btn-primary' : 'btn-secondary'}`}
                   style={{
                     fontSize: '0.8125rem',
                     padding: '6px 14px',
                   }}
                 >
-                  {isGuidedMode
-                    ? labels[tab]
-                    : tab === 'blockchain'
-                      ? 'Blockchain Lab'
-                      : tab === 'lessons'
-                        ? 'Lessons'
-                        : `${tab} Lab`}
+                  {isGuidedMode ? labels[tab] : sandboxLabels[tab]}
                 </button>
               );
             })}
@@ -154,7 +155,7 @@ export default function App() {
           maxWidth: '1280px',
           width: '100%',
           margin: '0 auto',
-          padding: '24px',
+          padding: '24px clamp(16px, 4vw, 24px)',
         }}
       >
         {/* Onboarding Start Here Hero */}

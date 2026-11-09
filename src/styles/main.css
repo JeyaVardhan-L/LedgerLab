@@ -82,6 +82,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-family: var(--font-mono);
+  white-space: nowrap;
 }
 
 .badge-cyan {
@@ -236,4 +237,82 @@ body {
   color: var(--accent-cyan);
   word-break: break-all;
   user-select: all;
+}
+
+/* Keyboard focus: visible ring on every interactive control */
+.btn:focus-visible,
+.stage-card:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
+/* Onboarding stage cards (buttons, so they are reachable by keyboard) */
+.stage-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+  width: 100%;
+  padding: 12px;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  background: rgba(15, 22, 35, 0.6);
+  border: 1px solid var(--border-subtle);
+  transition:
+    border-color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.stage-card:hover {
+  border-color: var(--border-accent);
+  background: var(--bg-card-hover);
+}
+
+.stage-card-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--accent-cyan);
+}
+
+.stage-card-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(0, 240, 255, 0.15);
+}
+
+.stage-card-icon {
+  margin-left: auto;
+  opacity: 0.7;
+}
+
+.stage-card-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.stage-card-summary {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
 }

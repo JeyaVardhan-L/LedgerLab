@@ -2,6 +2,43 @@ import React from 'react';
 import { Play, Compass, ArrowRight, ShieldCheck, Cpu, Link2, Award } from 'lucide-react';
 import { LabTab } from '../../App';
 
+const STAGES: ReadonlyArray<{
+  tab: LabTab;
+  number: number;
+  title: string;
+  summary: string;
+  Icon: typeof ShieldCheck;
+}> = [
+  {
+    tab: 'hash',
+    number: 1,
+    title: 'Cryptographic Hashes',
+    summary: 'Digital fingerprints & the avalanche effect',
+    Icon: ShieldCheck,
+  },
+  {
+    tab: 'block',
+    number: 2,
+    title: 'Block Structure',
+    summary: 'Packaging data & proof-of-work mining',
+    Icon: Cpu,
+  },
+  {
+    tab: 'blockchain',
+    number: 3,
+    title: 'The Blockchain',
+    summary: 'Parent linkage & cascading invalidation',
+    Icon: Link2,
+  },
+  {
+    tab: 'lessons',
+    number: 4,
+    title: 'Attack & Defense',
+    summary: 'Why rewriting history requires work',
+    Icon: Award,
+  },
+];
+
 interface OnboardingHeroProps {
   isGuidedMode: boolean;
   onStartGuided: () => void;
@@ -109,217 +146,24 @@ export const OnboardingHero: React.FC<OnboardingHeroProps> = ({
             border: '1px solid var(--border-subtle)',
           }}
         >
-          <div
-            onClick={() => onNavigateTab('hash')}
-            style={{
-              cursor: 'pointer',
-              padding: '10px',
-              borderRadius: 'var(--radius-sm)',
-              background: 'rgba(15, 22, 35, 0.6)',
-              border: '1px solid var(--border-subtle)',
-              transition: 'border-color var(--transition-fast)',
-            }}
-          >
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                fontSize: '0.75rem',
-                color: 'var(--accent-cyan)',
-                fontFamily: 'var(--font-mono)',
-                fontWeight: 700,
-                marginBottom: '4px',
-              }}
+          {STAGES.map(({ tab, number, title, summary, Icon }) => (
+            <button
+              key={tab}
+              type="button"
+              className="stage-card"
+              onClick={() => onNavigateTab(tab)}
             >
-              <span
-                style={{
-                  width: '20px',
-                  height: '20px',
-                  borderRadius: '50%',
-                  background: 'rgba(0, 240, 255, 0.15)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                1
+              <span className="stage-card-label">
+                <span className="stage-card-number" aria-hidden="true">
+                  {number}
+                </span>
+                STAGE 0{number}
+                <Icon size={13} aria-hidden="true" className="stage-card-icon" />
               </span>
-              STAGE 01
-              <ShieldCheck size={13} style={{ marginLeft: 'auto', opacity: 0.7 }} />
-            </div>
-            <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#fff' }}>
-              Cryptographic Hashes
-            </div>
-            <div
-              style={{
-                fontSize: '0.75rem',
-                color: 'var(--text-muted)',
-                marginTop: '2px',
-              }}
-            >
-              Digital fingerprints & the avalanche effect
-            </div>
-          </div>
-
-          <div
-            onClick={() => onNavigateTab('block')}
-            style={{
-              cursor: 'pointer',
-              padding: '10px',
-              borderRadius: 'var(--radius-sm)',
-              background: 'rgba(15, 22, 35, 0.6)',
-              border: '1px solid var(--border-subtle)',
-              transition: 'border-color var(--transition-fast)',
-            }}
-          >
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                fontSize: '0.75rem',
-                color: 'var(--accent-cyan)',
-                fontFamily: 'var(--font-mono)',
-                fontWeight: 700,
-                marginBottom: '4px',
-              }}
-            >
-              <span
-                style={{
-                  width: '20px',
-                  height: '20px',
-                  borderRadius: '50%',
-                  background: 'rgba(0, 240, 255, 0.15)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                2
-              </span>
-              STAGE 02
-              <Cpu size={13} style={{ marginLeft: 'auto', opacity: 0.7 }} />
-            </div>
-            <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#fff' }}>
-              Block Structure
-            </div>
-            <div
-              style={{
-                fontSize: '0.75rem',
-                color: 'var(--text-muted)',
-                marginTop: '2px',
-              }}
-            >
-              Packaging data & proof-of-work mining
-            </div>
-          </div>
-
-          <div
-            onClick={() => onNavigateTab('blockchain')}
-            style={{
-              cursor: 'pointer',
-              padding: '10px',
-              borderRadius: 'var(--radius-sm)',
-              background: 'rgba(15, 22, 35, 0.6)',
-              border: '1px solid var(--border-subtle)',
-              transition: 'border-color var(--transition-fast)',
-            }}
-          >
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                fontSize: '0.75rem',
-                color: 'var(--accent-cyan)',
-                fontFamily: 'var(--font-mono)',
-                fontWeight: 700,
-                marginBottom: '4px',
-              }}
-            >
-              <span
-                style={{
-                  width: '20px',
-                  height: '20px',
-                  borderRadius: '50%',
-                  background: 'rgba(0, 240, 255, 0.15)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                3
-              </span>
-              STAGE 03
-              <Link2 size={13} style={{ marginLeft: 'auto', opacity: 0.7 }} />
-            </div>
-            <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#fff' }}>
-              The Blockchain
-            </div>
-            <div
-              style={{
-                fontSize: '0.75rem',
-                color: 'var(--text-muted)',
-                marginTop: '2px',
-              }}
-            >
-              Parent linkage & cascading invalidation
-            </div>
-          </div>
-
-          <div
-            onClick={() => onNavigateTab('lessons')}
-            style={{
-              cursor: 'pointer',
-              padding: '10px',
-              borderRadius: 'var(--radius-sm)',
-              background: 'rgba(15, 22, 35, 0.6)',
-              border: '1px solid var(--border-subtle)',
-              transition: 'border-color var(--transition-fast)',
-            }}
-          >
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                fontSize: '0.75rem',
-                color: 'var(--accent-cyan)',
-                fontFamily: 'var(--font-mono)',
-                fontWeight: 700,
-                marginBottom: '4px',
-              }}
-            >
-              <span
-                style={{
-                  width: '20px',
-                  height: '20px',
-                  borderRadius: '50%',
-                  background: 'rgba(0, 240, 255, 0.15)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                4
-              </span>
-              STAGE 04
-              <Award size={13} style={{ marginLeft: 'auto', opacity: 0.7 }} />
-            </div>
-            <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#fff' }}>
-              Attack & Defense
-            </div>
-            <div
-              style={{
-                fontSize: '0.75rem',
-                color: 'var(--text-muted)',
-                marginTop: '2px',
-              }}
-            >
-              Why rewriting history requires work
-            </div>
-          </div>
+              <span className="stage-card-title">{title}</span>
+              <span className="stage-card-summary">{summary}</span>
+            </button>
+          ))}
         </div>
 
         {/* CTA Actions */}
