@@ -2,8 +2,13 @@
 
 An interactive, browser-only laboratory for learning how a blockchain works by changing data and watching what breaks: SHA-256 hashing, block structure, proof-of-work and tamper-evident chains. Everything is simulated client-side; there is no backend, no wallet and no real currency.
 
-![LedgerLab Hash Lab: one input hashed with SHA-256, and a 256-square avalanche matrix showing 131 of 256 output bits flipped after a small edit](docs/images/hash-avalanche-desktop.png)
-<sub>Screenshot of the running app (Hash Lab, free-sandbox mode). Input text is demo data.</sub>
+**Live demo: https://jeyavardhan-l.github.io/LedgerLab/**
+
+<p align="center">
+  <img src="docs/images/ledgerlab-hero.png" width="720" alt="LedgerLab Hash Lab: one input hashed with SHA-256 and a 256-square avalanche matrix showing 131 of 256 output bits flipped after a small edit">
+  <br>
+  <sub>Screenshot of the running app (Hash Lab). Input text is demo data.</sub>
+</p>
 
 ## What you can do in it
 
@@ -15,19 +20,6 @@ An interactive, browser-only laboratory for learning how a blockchain works by c
 | **Lessons** | Two guided lessons (hashing, chain integrity) with steps, hints and a conceptual question about 51% attacks. | Implemented, covered by unit and browser tests |
 | **Guided Journey** | A start screen and a "mission" panel per lab that walks a first-time learner through stages 1 to 4. Can be switched off for free exploration. | Implemented, covered by browser tests |
 | Wallets and signatures, transactions and mempool, Web Worker mining, multi-node network and attack simulations | | Planned (see [roadmap](docs/roadmap.md)) |
-
-<table>
-  <tr>
-    <td width="50%"><img src="docs/images/block-mined-desktop.png" alt="Block Lab after mining: data edited to a demo transaction, nonce 31 found, stored hash matches the computed hash and starts with 00"></td>
-    <td width="50%"><img src="docs/images/chain-tampered-desktop.png" alt="Blockchain Lab: genesis block intact, Block #1 marked broken after its data was edited"></td>
-  </tr>
-  <tr>
-    <td><sub>Block Lab after editing the data and mining a new nonce (demo data).</sub></td>
-    <td><sub>Blockchain Lab after tampering with Block #1 (demo data).</sub></td>
-  </tr>
-</table>
-
-All images are real captures of the app running locally with Playwright (1440x900 desktop, 390x844 mobile). The transaction strings in them are made-up demo data.
 
 ## Run it
 
@@ -51,7 +43,7 @@ npx playwright install chromium   # once, for the browser tests
 npm run test:e2e     # Playwright browser tests (starts the dev server itself)
 ```
 
-A GitHub Actions workflow (`.github/workflows/ci.yml`) runs all of these on every push to `main` and on pull requests.
+A GitHub Actions workflow (`.github/workflows/ci.yml`) runs all of these on every push to `main` and on pull requests. A second workflow (`pages.yml`) publishes the built site to GitHub Pages on each push to `main`.
 
 ## How it works
 
@@ -81,6 +73,7 @@ Run on 2026-11-10, Windows 11, Node 22.23.2, Chromium (Playwright 1.63):
 | `npm test` | 42 of 42 unit tests passed (6 files) |
 | `npm run test:e2e` | 3 of 3 browser tests passed |
 | `npm run lint`, `npm run format:check`, `npm run build` | all passed |
+| GitHub Actions CI on `main` (commit `5a41c95`) | passed |
 
 No performance figures are claimed; hash rate and mining time have not been measured.
 
