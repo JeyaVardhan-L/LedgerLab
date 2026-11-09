@@ -53,5 +53,5 @@ LedgerLab is designed as a **browser-first, client-side, zero-backend** applicat
 ### 5. Monospace Technical Styling
 - The design system prioritizes legibility of technical data:
   - Hashes and binary bitstreams use monospace typography (`JetBrains Mono`, `Consolas`).
-  - Dark-first aesthetic minimizes visual fatigue during laboratory sessions.
+  - A light, mostly monochrome theme (white and warm-grey surfaces, graphite text) keeps attention on the data. Colour is reserved for state: brass for intact blocks, ember orange for tampered ones and for flipped bits.
   - No flashy crypto marketing elements (no candlestick charts, no rocket emojis, no speculative tokens).
