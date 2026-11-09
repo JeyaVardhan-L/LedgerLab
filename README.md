@@ -1,187 +1,103 @@
 # LedgerLab
 
-> **An interactive laboratory for understanding blockchains.**
+An interactive, browser-only laboratory for learning how a blockchain works by changing data and watching what breaks: SHA-256 hashing, block structure, proof-of-work and tamper-evident chains. Everything is simulated client-side; there is no backend, no wallet and no real currency.
 
-LedgerLab is an open-source, browser-based blockchain laboratory where you learn cryptography, transactions, consensus, and attacks by experimenting with a simulated network.
+![LedgerLab Hash Lab: one input hashed with SHA-256, and a 256-square avalanche matrix showing 131 of 256 output bits flipped after a small edit](docs/images/hash-avalanche-desktop.png)
+<sub>Screenshot of the running app (Hash Lab, free-sandbox mode). Input text is demo data.</sub>
 
-[![CI](https://img.shields.io/badge/build-passing-brightgreen)]()
-[![Tests](https://img.shields.io/badge/tests-20%20passed-emerald)]()
-[![E2E](https://img.shields.io/badge/e2e-playwright%20verified-blue)]()
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+## What you can do in it
 
----
+| Lab | What it shows | Status |
+| :-- | :-- | :-- |
+| **Hash Lab** | Live SHA-256 of any text, the 256-bit output, and an avalanche view that compares two inputs bit by bit (Hamming distance). | Implemented, covered by unit and browser tests |
+| **Block Lab** | One block with editable index, timestamp, previous hash, data and nonce. Edit the data and the stored hash stops matching; press *Mine Block* to search for a nonce whose hash has the required leading zeros. | Implemented, covered by unit and browser tests |
+| **Blockchain Lab** | A 4-block chain at difficulty 2. Edit an old block and it, plus every block after it, turns invalid; re-mine from the first broken block to repair it. | Implemented, covered by unit and browser tests |
+| **Lessons** | Two guided lessons (hashing, chain integrity) with steps, hints and a conceptual question about 51% attacks. | Implemented, covered by unit and browser tests |
+| **Guided Journey** | A start screen and a "mission" panel per lab that walks a first-time learner through stages 1 to 4. Can be switched off for free exploration. | Implemented, covered by browser tests |
+| Wallets and signatures, transactions and mempool, Web Worker mining, multi-node network and attack simulations | | Planned (see [roadmap](docs/roadmap.md)) |
 
-## First Time Here? Start Here
+<table>
+  <tr>
+    <td width="50%"><img src="docs/images/block-mined-desktop.png" alt="Block Lab after mining: data edited to a demo transaction, nonce 31 found, stored hash matches the computed hash and starts with 00"></td>
+    <td width="50%"><img src="docs/images/chain-tampered-desktop.png" alt="Blockchain Lab: genesis block intact, Block #1 marked broken after its data was edited"></td>
+  </tr>
+  <tr>
+    <td><sub>Block Lab after editing the data and mining a new nonce (demo data).</sub></td>
+    <td><sub>Blockchain Lab after tampering with Block #1 (demo data).</sub></td>
+  </tr>
+</table>
 
-> **No prior blockchain or cryptography knowledge is required.**
-> LedgerLab is designed for anyone with basic computer literacy who wants to understand how blockchains actually work under the hood.
+All images are real captures of the app running locally with Playwright (1440x900 desktop, 390x844 mobile). The transaction strings in them are made-up demo data.
 
-LedgerLab offers a structured, 4-stage guided laboratory journey:
+## Run it
 
-1. **Start the Guided Journey**  
-   Click **"Start Guided Journey"** on the home screen or use the mode switch in the top header. The laboratory will guide you with concrete, numbered missions right alongside the interactive experiments.
-2. **Cryptographic Hashes & The Avalanche Effect (Stage 01)**  
-   Type text into the Hash Lab. Observe how the 64-character SHA-256 fingerprint remains fixed in length, and how flipping a single letter completely scrambles the entire hash.
-3. **Block Structure & Proof-of-Work Mining (Stage 02)**  
-   Package data with a timestamp, index, and nonce into a single block. Deliberately tamper with the payload to see the block become invalid, then click **Mine Block** to watch your computer search for a valid nonce meeting the difficulty target.
-4. **The Blockchain & Cascading Invalidation (Stage 03)**  
-   Connect blocks in sequence where each block stores the previous block's hash. Tamper with historical Block #1 to witness cascading downstream invalidation as every subsequent block's parent link is severed.
-5. **Attack, Defense & Conceptual Challenge (Stage 04)**  
-   Re-mine the chain and discover why rewriting historical transactions requires re-mining every subsequent block—a feat that becomes mathematically and computationally intractable in a real distributed network. Complete the conceptual challenge in the Lessons tab to test your understanding.
+Requires Node.js 18 or newer (tested with Node 22).
 
-Prefer unrestricted exploration? Click **"Explore Free Sandboxes"** at any time to freely experiment across all laboratories.
-
-Need quick definitions of terms like Nonce, Difficulty, Target Prefix, or Cascading Invalidation? See our [Plain-English Glossary](./docs/glossary.md).
-
----
-
-## 1. What LedgerLab Is
-
-LedgerLab is an interactive technical workbench for demystifying blockchains through hands-on experimentation.
-
-Instead of reading abstract prose about cryptographic hashes and consensus, learners directly manipulate inputs, observe cryptographic outputs, inspect block headers, and **deliberately break simulated chains** to understand why blockchain protocols are constructed the way they are.
-
-### What LedgerLab is NOT
-- ❌ Not a real cryptocurrency or trading network
-- ❌ Not a wallet for real digital assets
-- ❌ Not a financial speculation tool or token exchange
-- ❌ Not a production blockchain implementation
-
----
-
-## 2. Why It Exists
-
-Most resources explaining blockchains fall into two extremes:
-1. **Speculative hype**: Trading jargon, market speculation, and price charts.
-2. **Abstract academic theory**: Mathematical papers without intuitive, visual mental models.
-
-LedgerLab exists to bridge this gap following a core learning philosophy:
-
-```text
-LEARN ➔ INTERACT ➔ BREAK ➔ OBSERVE ➔ UNDERSTAND ➔ EXPERIMENT
+```bash
+git clone https://github.com/JeyaVardhan-L/LedgerLab.git
+cd LedgerLab
+npm ci
+npm run dev          # http://localhost:3000
 ```
 
-By allowing learners to edit historical blocks, tamper with transactions, watch downstream invalidation cascade through time, and re-mine chains, the underlying mechanisms become immediately clear.
+Checks:
 
----
+```bash
+npm test             # Vitest unit tests
+npm run lint         # ESLint, zero warnings allowed
+npm run format:check # Prettier
+npm run build        # tsc type check + Vite production build into dist/
+npx playwright install chromium   # once, for the browser tests
+npm run test:e2e     # Playwright browser tests (starts the dev server itself)
+```
 
-## 3. What You Can Learn
+A GitHub Actions workflow (`.github/workflows/ci.yml`) runs all of these on every push to `main` and on pull requests.
 
-- **Cryptographic Hashes**: How SHA-256 creates deterministic, one-way fingerprints of arbitrary data.
-- **The Avalanche Effect**: Why flipping even 1 bit in an input flips approximately 50% of output bits.
-- **Block Anatomy**: How index, timestamp, previous hash, payload data, and nonces are bound together.
-- **Chain Immutability & Linkage**: Why historical blocks cannot be changed without invalidating every subsequent block.
-- **Proof-of-Work Mining**: How difficulty targets force computational work to establish consensus.
-- **Attack Mechanics**: How tampering is detected and why rewriting history requires overwhelming computational power.
-
----
-
-## 4. Current Status: MVP-01 Foundation
-
-| Feature Area | Status | Description |
-| :--- | :--- | :--- |
-| **Hash Lab** | `Implemented` | Real-time SHA-256 calculator, 256-bit binary stream, and live avalanche visualizer with Hamming distance metrics. |
-| **Block Lab** | `Implemented` | Single block inspector, editable fields, live hash computation, validity status, and target difficulty mining. |
-| **Blockchain Lab** | `Implemented` | 4-block linked chain with visual connectors, real-time cascading downstream invalidation, and chain repair re-mining. |
-| **Education Engine** | `Implemented` | Guided curriculum runner with Lesson 01 (Hashes) and Lesson 02 (Chain Integrity) including challenges. |
-| **Account & Wallet Lab** | `Planned` | Public/private keypairs, address derivation, and account state model. |
-| **Transaction Lab** | `Planned` | Digital signatures, nonce verification, and mempool simulation. |
-| **Web Worker Mining** | `Planned` | Background thread worker for high-difficulty Proof-of-Work simulations without main thread delay. |
-| **Network & Attack Lab** | `Planned` | Multi-node gossip propagation, simulated latency, chain splits, and 51% attack demonstrations. |
-
----
-
-## 5. Architecture
-
-LedgerLab is engineered as a **browser-first, client-side, static application**:
+## How it works
 
 ```text
 src/
-├── crypto/          # Cryptographic primitives (SHA-256, avalanche calculator)
-├── engine/          # Deterministic blockchain simulation engine (Block, Blockchain)
-├── education/       # Curriculum schema, lesson catalog, step definitions
-├── components/      # React UI modules (HashLab, BlockLab, BlockchainLab, LessonRunner)
-└── styles/          # Dark laboratory design tokens and styling
+├── crypto/      sha256.ts (hand-written SHA-256), avalanche.ts (bit-level diff)
+├── engine/      block.ts (hash, validate, mine), blockchain.ts (chain, tamper, repair)
+├── education/   lesson data and types
+├── components/  React UI: HashLab, BlockLab, BlockchainLab, LessonRunner, guidance panels
+└── styles/      design tokens and shared CSS
 ```
 
-### Architectural Guarantees
-- **Zero Backend**: All calculations run locally in the browser using Web Crypto and standard TypeScript.
-- **Zero Financial Data**: No price charts, market tickers, or trading mechanics.
-- **Engine / UI Separation**: The simulation engine contains zero UI-specific code and is 100% testable in isolation.
-- **Static Deployment**: Compiles directly to static HTML/CSS/JS for GitHub Pages or Cloudflare Pages.
+- **Engine separate from UI.** `crypto/` and `engine/` are plain TypeScript with no React imports, so all the blockchain rules are unit-tested in Node without a browser.
+- **Block hash.** `SHA-256(index | previousHash | timestamp | data | nonce | difficulty)`. A block is valid when its stored hash equals that recomputation and starts with `difficulty` zero hex digits.
+- **Chain validation** (`validateChain`) checks, per block: genesis points at 64 zeros, stored hash matches the contents, the hash meets the network difficulty, the declared difficulty equals the network difficulty, and the block links to a valid predecessor. That last rule is what makes one edit invalidate every later block.
+- **Why a hand-written SHA-256?** The browser's Web Crypto API is asynchronous. The labs recompute hashes on every keystroke and during mining, and a synchronous function keeps that code simple. The implementation is checked against published test vectors and against Node's `crypto` module at the 55/56/64-byte padding boundaries and on multi-byte UTF-8 input (`tests/unit/sha256-crosscheck.test.ts`).
+- **Mining without freezing the page.** The Block Lab mines in steps of 5,000 nonces per timer tick (`mineBlockStep`) and can be cancelled. The Blockchain Lab mines synchronously, which is quick at its fixed difficulty of 2.
 
----
+More detail: [architecture](docs/architecture.md), [simulation model](docs/simulation-model.md), [education model](docs/education-model.md), [glossary](docs/glossary.md).
 
-## 6. Getting Started
+## Verified results
 
-### Prerequisites
-- Node.js v18+ (Node 22 LTS recommended)
-- npm v9+
+Run on 2026-11-10, Windows 11, Node 22.23.2, Chromium (Playwright 1.63):
 
-### Installation
-```bash
-# Clone the repository
-git clone https://github.com/JeyaVardhan-L/Campus_Coin.git
-cd Campus_Coin
+| Check | Result |
+| :-- | :-- |
+| `npm test` | 42 of 42 unit tests passed (6 files) |
+| `npm run test:e2e` | 3 of 3 browser tests passed |
+| `npm run lint`, `npm run format:check`, `npm run build` | all passed |
 
-# Install dependencies
-npm install
-```
+No performance figures are claimed; hash rate and mining time have not been measured.
 
----
+## Limits and unfinished work
 
-## 7. Development Commands
+- Educational only. The chain is a single in-memory list in one browser tab: no network, no peers, no fork choice, no persistence. Repairing a tampered chain is easy here because the learner has all the hash power; the lessons explain why that is not true on a real network, but the app does not simulate it.
+- Difficulty is counted in leading zero *hex digits*, not a numeric target, and the Block Lab gives up after 1,000,000 attempts.
+- The Blockchain Lab's re-mine runs on the main thread. Higher difficulties would need the planned Web Worker.
+- Keys, signatures, transactions, Merkle trees and network attacks are planned, not built.
+- Mobile layouts work but were designed desktop-first.
 
-```bash
-# Start local development server (http://localhost:3000)
-npm run dev
+## Origin
 
-# Run unit test suite (Vitest)
-npm test
+LedgerLab replaces **Campus Coin**, an earlier Java/Swing blockchain prototype that this repository started as. That code is kept unmodified for reference in [`legacy/campus-coin-java/`](legacy/campus-coin-java/) and is not built or maintained; see [docs/legacy-campus-coin.md](docs/legacy-campus-coin.md).
 
-# Run browser end-to-end smoke tests (Playwright)
-npm run test:e2e
+## Credits and licence
 
-# Run TypeScript type check and production bundle build
-npm run build
+Built by Jeya Vardhan ([@JeyaVardhan-L](https://github.com/JeyaVardhan-L)). Uses React, Vite, TypeScript and [Lucide](https://lucide.dev) icons (ISC licence). Fonts Inter and JetBrains Mono (SIL Open Font License) are loaded from Google Fonts.
 
-# Run ESLint validation
-npm run lint
-
-# Check code formatting (Prettier)
-npm run format:check
-```
-
----
-
-## 8. Educational Safety Disclaimer
-
-> [!CAUTION]
-> **LedgerLab is strictly an educational simulation.**
-> - It does not generate, store, transmit, or custody real cryptocurrencies.
-> - Any cryptographic keys, signatures, addresses, or transactions generated inside LedgerLab are for laboratory demonstration only.
-> - **Never** import keys generated in LedgerLab into production cryptocurrency wallets or mainnet networks.
-
----
-
-## 9. Historical Origin: Legacy Campus Coin Prototype
-
-LedgerLab is the direct reimagining and successor to **Campus Coin**, an early desktop prototype built in Java and Swing (`javax.swing`).
-
-The original Java source code has been preserved in its entirety for historical reference in the [`legacy/campus-coin-java/`](./legacy/campus-coin-java/) directory. For an in-depth retrospective and analysis of the transition from Campus Coin to LedgerLab, see [`docs/legacy-campus-coin.md`](./docs/legacy-campus-coin.md).
-
----
-
-## 10. Contributing
-
-We welcome educational contributions, bug reports, and lesson proposals!
-Please review the architecture guidelines before submitting pull requests:
-1. All simulation domain logic belongs in `src/engine/` or `src/crypto/` with comprehensive unit tests.
-2. The UI must maintain the restrained, dark laboratory visual identity.
-3. No speculative financial language or crypto market features.
-
----
-
-## 11. License
-
-LedgerLab is licensed under the [MIT License](./LICENSE).
+Released under the [MIT License](LICENSE).
