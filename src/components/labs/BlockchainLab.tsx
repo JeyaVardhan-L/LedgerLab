@@ -105,7 +105,7 @@ export const BlockchainLab: React.FC<BlockchainLabProps> = ({
           tryThis={[
             'Inspect the links between blocks. Notice that Block #1 Previous Hash matches Block #0 Hash.',
             'Tamper with history: In Block #1, modify the data payload (e.g. edit the text).',
-            'Watch Blocks #1, #2, #3, and #4 immediately become invalid (red cards and broken link arrows).',
+            'Watch Block #1 and every block after it immediately become invalid (red cards and broken link arrows).',
             "Inspect the red arrows: Block #2 still expects Block #1's original hash, breaking the cryptographic link!",
             'Click the [ Re-mine From Block #1 ] button in the toolbar to repair the chain.',
           ]}
